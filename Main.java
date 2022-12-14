@@ -19,21 +19,27 @@ public class Main {
         int qtdMusicas = sc.nextInt();
 
         sc.nextLine();
-        String musica;
-        ArrayList<Musica> musicas = new ArrayList<>();
+        Album album = new Album(artista, qtdMusicas, titulo);
+
         for (int i = 0; i < qtdMusicas; i++) {
-            System.out.println("Musica #: " + i);
+            System.out.println("Nome # " + i + ": ");
             String nome = sc.nextLine();
+            System.out.println("Duracao # " + i + ": ");
+            int duracao = sc.nextInt();
+            sc.nextLine();
+
+            album.addMusica(nome, artista, duracao);
         }
 
-        Album album = new Album(artista, qtdMusicas, titulo, musicas);
-
+        
         while (true) {
             System.out.println("O que deseja fazer?");
             System.out.println("1- Checar se uma musica esta no album");
             System.out.println("2- Verificar o nome de uma musica");
             System.out.println("3- Imprimir dados do album");
             System.out.println("4- Alterar a posicao de uma musica");
+            System.out.println("5- Adicionar musica");
+            System.out.println("6- Remover musica");
             System.out.println("0- Sair do programa");
             int escolha = sc.nextInt();
             sc.nextLine();
@@ -64,6 +70,21 @@ public class Main {
 
                     album.alterarPosicao(nomeMusica, novaPosicao);
                     break;
+                case 5:
+                    System.out.println("Nome da musica: ");
+                    nome = sc.nextLine();
+
+                    System.out.println("Duracao da musica: ");
+                    int duracao = sc.nextInt();
+                    sc.nextLine();
+
+                    album.addMusica(nome, artista, duracao);
+                    break;
+                case 6:
+                    System.out.println("Musica que deseja remover: ");
+                    nome = sc.nextLine();
+
+                    album.removeMusica(nome);
                 default:
                     return;
             }

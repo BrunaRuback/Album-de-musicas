@@ -11,9 +11,9 @@ public class Album {
     private int qtdMusicas;
     private ArrayList<Musica> musicas;
 
-    public Album(String artista, int qtdMusicas, String titulo, ArrayList musicas) {
+    public Album(String artista, int qtdMusicas, String titulo) {
         this.artista = artista;
-        this.musicas = musicas;
+        this.musicas = new ArrayList<>();
         this.qtdMusicas = qtdMusicas;
         this.titulo = titulo;
     }
@@ -64,7 +64,9 @@ public class Album {
         System.out.println("Artista: " + artista);
         System.out.println("Quantidade de musicas: " + qtdMusicas);
         for (Musica musica : musicas) {
-            System.out.println("Nome da musica: " + musica);
+            System.out.println("Nome: " + musica.getNome());
+            System.out.println("Artista: " + musica.getArtista());
+            System.out.println("Duracao: " + musica.getDuracao());
         }
     }
 

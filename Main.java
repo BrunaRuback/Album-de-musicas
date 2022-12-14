@@ -2,12 +2,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import album.Album;
-import musica.Musica;
 
 public class Main {
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
+
+        // Album album = new Album(null, 0, null);
 
         System.out.println("Titulo do album: ");
         String titulo = sc.nextLine();
@@ -19,27 +20,22 @@ public class Main {
         int qtdMusicas = sc.nextInt();
 
         sc.nextLine();
-        Album album = new Album(artista, qtdMusicas, titulo);
-
+        String musica;
+        ArrayList<String> musicas = new ArrayList<>();
         for (int i = 0; i < qtdMusicas; i++) {
-            System.out.println("Nome # " + i + ": ");
-            String nome = sc.nextLine();
-            System.out.println("Duracao # " + i + ": ");
-            int duracao = sc.nextInt();
-            sc.nextLine();
-
-            album.addMusica(nome, artista, duracao);
+            System.out.println("Musica #: " + i);
+            musica = sc.nextLine();
+            musicas.add(musica);
         }
 
-        
+        Album album = new Album(artista, qtdMusicas, titulo, musicas);
+
         while (true) {
             System.out.println("O que deseja fazer?");
             System.out.println("1- Checar se uma musica esta no album");
             System.out.println("2- Verificar o nome de uma musica");
             System.out.println("3- Imprimir dados do album");
             System.out.println("4- Alterar a posicao de uma musica");
-            System.out.println("5- Adicionar musica");
-            System.out.println("6- Remover musica");
             System.out.println("0- Sair do programa");
             int escolha = sc.nextInt();
             sc.nextLine();
@@ -63,28 +59,13 @@ public class Main {
                     break;
                 case 4:
                     System.out.println("Musica que deseja alterar: ");
-                    String nomeMusica = sc.nextLine();
+                    musica = sc.nextLine();
 
                     System.out.println("Nova posicao da musica: ");
                     int novaPosicao = sc.nextInt();
 
-                    album.alterarPosicao(nomeMusica, novaPosicao);
+                    album.alterarPosicao(musica, novaPosicao);
                     break;
-                case 5:
-                    System.out.println("Nome da musica: ");
-                    nome = sc.nextLine();
-
-                    System.out.println("Duracao da musica: ");
-                    int duracao = sc.nextInt();
-                    sc.nextLine();
-
-                    album.addMusica(nome, artista, duracao);
-                    break;
-                case 6:
-                    System.out.println("Musica que deseja remover: ");
-                    nome = sc.nextLine();
-
-                    album.removeMusica(nome);
                 default:
                     return;
             }
